@@ -59,6 +59,12 @@ vim.o.clipboard = "unnamedplus"
 vim.o.termguicolors = true
 
 
+-- Remove background color
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_command("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
+
+
 --------------------------------------------------------------------------------
 --- Fuzzy Finder
 --------------------------------------------------------------------------------
