@@ -335,3 +335,19 @@ cmp.setup {
         { name = "luasnip" },
     },
 }
+
+
+--------------------------------------------------------------------------------
+--- Rust
+--------------------------------------------------------------------------------
+
+-- Define a function to run cargo fmt after saving and reload changes
+function post_save_cargo_fmt()
+    vim.fn.system("cargo fmt")
+    vim.api.nvim_command("e!")
+end
+
+-- Automatically run the post-save function after writing the buffer to disk
+vim.cmd[[
+  autocmd BufWritePost *.rs lua post_save_cargo_fmt()
+]]
