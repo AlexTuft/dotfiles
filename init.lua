@@ -217,6 +217,10 @@ local on_attach = function(_, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
         vim.lsp.buf.format()
     end, { desc = "Format current buffer with LSP" })
+
+    vim.cmd[[
+    autocmd BufWritePost *.rs Format
+]]
 end
 
 --  If you want to override the default filetypes that your language server will attach to you can
@@ -346,13 +350,3 @@ cmp.setup {
 --- Rust
 --------------------------------------------------------------------------------
 
--- Define a function to run cargo fmt after saving and reload changes
-function post_save_cargo_fmt()
-    vim.fn.system("cargo fmt")
-    vim.api.nvim_command("e!")
-end
-
--- Automatically run the post-save function after writing the buffer to disk
-vim.cmd[[
-  autocmd BufWritePost *.rs lua post_save_cargo_fmt()
-]]
