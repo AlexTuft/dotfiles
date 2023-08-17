@@ -263,6 +263,21 @@ mason_lspconfig.setup_handlers {
     end
 }
 
+-- manage some LSPs without mason
+
+local lspconfig = require("lspconfig")
+
+local function get_rust_toolchain()
+    return vim.fn.system("rustup default | awk '{print $1}'"):sub(1, -2) -- Remove trailing newline
+end
+
+lspconfig.rust_analyzer.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = {
+        "rustup", "run", get_rust_toolchain(), "rust-analyzer",
+    }
+}
 
 --------------------------------------------------------------------------------
 --- Cmp
