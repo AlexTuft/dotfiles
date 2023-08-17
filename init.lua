@@ -276,6 +276,13 @@ lspconfig.rust_analyzer.setup {
     on_attach = on_attach,
     cmd = {
         "rustup", "run", get_rust_toolchain(), "rust-analyzer",
+    },
+    settings = {
+        ["rust-analyzer"] = {
+            check = {
+                command = "clippy"
+            }
+        }
     }
 }
 
