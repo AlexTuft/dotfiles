@@ -63,7 +63,6 @@ vim.o.termguicolors = true
 
 -- Remove background color
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_command("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
 
 
@@ -333,6 +332,12 @@ cmp.setup {
     sources = {
         { name = "nvim_lsp" },
         { name = "luasnip" },
+    },
+    window = {
+        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({
+            winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None'
+        }),
     },
 }
 
