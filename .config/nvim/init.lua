@@ -30,6 +30,21 @@ vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "Open file [e]xplorer" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
+-- Window navigation
+require("tmux")
+
+if is_tmux() then
+    setup_vim_tmux_navigation()
+else
+    vim.keymap.set("n", "<M-H>", "<C-W>h")
+    vim.keymap.set("n", "<M-J>", "<C-W>j")
+    vim.keymap.set("n", "<M-K>", "<C-W>k")
+    vim.keymap.set("n", "<M-L>", "<C-W>l")
+    vim.keymap.set("n", "<M-UP>", "<C-W><UP>")
+    vim.keymap.set("n", "<M-DOWN>", "<C-W><DOWN>")
+    vim.keymap.set("n", "<M-LEFT>", "<C-W><LEFT>")
+    vim.keymap.set("n", "<M-RIGHT>", "<C-W><RIGHT>")
+end
 --------------------------------------------------------------------------------
 --- Options
 --------------------------------------------------------------------------------
@@ -203,7 +218,7 @@ local on_attach = function(_, bufnr)
 
     -- See `:help K` for why this keymap
     nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-    nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+    nmap("sk", vim.lsp.buf.signature_help, "Signature Documentation")
 
     -- Lesser used LSP functionality
     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
