@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 
-
 --------------------------------------------------------------------------------
 --- Plugins
 --------------------------------------------------------------------------------
@@ -20,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+vim.g.copilot_assume_mapped = true
 
 --------------------------------------------------------------------------------
 --- Keymaps
@@ -241,10 +241,8 @@ end
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property "filetypes" to the map in question.
 local servers = {
-    -- clangd = {},
     -- gopls = {},
     -- pyright = {},
-    -- rust_analyzer = {},
     -- tsserver = {},
     -- html = { filetypes = { "html", "twig", "hbs"} },
 
@@ -302,6 +300,19 @@ lspconfig.rust_analyzer.setup {
             }
         }
     }
+}
+
+lspconfig.clangd.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = {
+        "clangd", "--log=verbose", "--query-driver=\"/snap/bin/zig\""
+    }
+}
+
+lspconfig.omnisharp.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
 }
 
 --------------------------------------------------------------------------------

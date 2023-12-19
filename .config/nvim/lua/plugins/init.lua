@@ -1,4 +1,8 @@
 return {
+    -- github copilot
+    {
+        "github/copilot.vim"
+    },
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
