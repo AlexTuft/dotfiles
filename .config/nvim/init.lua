@@ -379,3 +379,32 @@ vim.keymap.set("n", "<F7>", function () dap.step_over() end, { desc = "Step over
 vim.keymap.set("n", "<F8>", function () dap.step_into() end, { desc = "Step into" })
 vim.keymap.set("n", "<F9>", function () dap.step_out() end, { desc = "Step out" })
 vim.keymap.set("n", "<leader>b", function () dap.toggle_breakpoint() end, { desc = "Toggle breakpoint" })
+
+
+local nvim_data_dir = vim.fn.stdpath("data")
+local codelldb_path = nvim_data_dir .. "/mason/packages/codelldb/extension/adapter/codelldb"
+local codelldb_port = 13000
+
+dap.adapters.codelldb = {
+    type = 'server',
+    host = '127.0.0.1',
+    port = codelldb_port,
+    executable = {
+        command = codelldb_path,
+        args = { "--port", codelldb_port },
+        detached = jit.os ~= "Windows",
+    }
+}
+
+dap.configurations.rust =  {
+    {
+        name = "Launch File",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+    },
+}
