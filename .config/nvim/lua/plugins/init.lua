@@ -104,4 +104,13 @@ return {
             require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
     },
+    -- Debugging
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "theHamsta/nvim-dap-virtual-text",
+            "rcarriga/nvim-dap-ui",
+            "nvim-telescope/telescope-dap.nvim",
+        },
+    },
 }
