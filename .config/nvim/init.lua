@@ -283,8 +283,17 @@ mason_lspconfig.setup_handlers {
 
 local lspconfig = require("lspconfig")
 
+-- NOTE: Install rust with 'rustup component add rust-analyzer'
+
 local function get_rust_toolchain()
-    return vim.fn.system("rustup default | awk '{print $1}'"):sub(1, -2) -- Remove trailing newline
+    local toolchain = vim.fn.system("rustup default")
+
+    local space_index = string.find(toolchain, " ")
+    if space_index ~= nil then
+        toolchain = toolchain:sub(1, space_index - 1)
+    end
+
+    return toolchain
 end
 
 lspconfig.rust_analyzer.setup {
