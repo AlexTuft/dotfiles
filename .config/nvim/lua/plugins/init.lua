@@ -125,4 +125,8 @@ return {
             "nvim-lua/plenary.nvim",
         },
     },
+    -- Which Key
+    {
+        "folke/which-key.nvim",
+    },
 }

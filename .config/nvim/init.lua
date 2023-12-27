@@ -97,6 +97,13 @@ vim.keymap.set("n", "<leader>hi", function () harpoon:list():select(3) end)
 vim.keymap.set("n", "<leader>ho", function () harpoon:list():select(4) end)
 vim.keymap.set("n", "<leader>hp", function () harpoon:list():select(5) end)
 
+-- WhichKey
+
+require("which-key").setup()
+
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+
 --------------------------------------------------------------------------------
 --- Fuzzy Finder
 --------------------------------------------------------------------------------
