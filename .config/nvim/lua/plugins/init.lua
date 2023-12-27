@@ -113,4 +113,8 @@ return {
             "nvim-telescope/telescope-dap.nvim",
         },
     },
+    -- Autocomment
+    {
+        "numToStr/Comment.nvim"
+    },
 }
