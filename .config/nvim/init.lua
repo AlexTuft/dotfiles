@@ -373,14 +373,31 @@ vim.g.copilot_assume_mapped = true
 --------------------------------------------------------------------------------
 
 local dap = require("dap")
+local dapui = require("dapui")
 
+-- Keymaps
 vim.keymap.set("n", "<F5>", function () dap.continue() end, { desc = "Start debugging" })
 vim.keymap.set("n", "<F7>", function () dap.step_over() end, { desc = "Step over" })
 vim.keymap.set("n", "<F8>", function () dap.step_into() end, { desc = "Step into" })
 vim.keymap.set("n", "<F9>", function () dap.step_out() end, { desc = "Step out" })
 vim.keymap.set("n", "<leader>b", function () dap.toggle_breakpoint() end, { desc = "Toggle breakpoint" })
 
+-- UI
+dapui.setup()
 
+dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+end
+
+dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+end
+
+dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+end
+
+-- Adapters
 local nvim_data_dir = vim.fn.stdpath("data")
 local codelldb_path = nvim_data_dir .. "/mason/packages/codelldb/extension/adapter/codelldb"
 local codelldb_port = 13000
