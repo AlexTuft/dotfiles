@@ -43,6 +43,7 @@ else
     vim.keymap.set("n", "<M-LEFT>", "<C-W><LEFT>")
     vim.keymap.set("n", "<M-RIGHT>", "<C-W><RIGHT>")
 end
+
 --------------------------------------------------------------------------------
 --- Options
 --------------------------------------------------------------------------------
@@ -80,6 +81,21 @@ vim.api.nvim_command("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
 
 -- Setup toggle comment plugin
 require("Comment").setup()
+
+-- Harpoon
+
+local harpoon = require("harpoon")
+
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>ha", function () harpoon:list():append() end, { desc = "Add file to harpoon" })
+vim.keymap.set("n", "<leader>hl", function () harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "List harpooned files"})
+
+vim.keymap.set("n", "<leader>hy", function () harpoon:list():select(1) end)
+vim.keymap.set("n", "<leader>hu", function () harpoon:list():select(2) end)
+vim.keymap.set("n", "<leader>hi", function () harpoon:list():select(3) end)
+vim.keymap.set("n", "<leader>ho", function () harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>hp", function () harpoon:list():select(5) end)
 
 --------------------------------------------------------------------------------
 --- Fuzzy Finder
