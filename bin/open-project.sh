@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -z "$TMUX" ]; then
+    exit 0
+fi
+
 work_dir=~/sources/
 
 workspace_dir=$(find $work_dir -maxdepth 1 -type d | fzf)
