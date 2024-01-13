@@ -125,3 +125,5 @@ parse_git_branch() {
 }
 
 export PS1="\e[1;32m\u@\h \e[1;34m\w \e[1;36m\$(parse_git_branch)\e[00m$ "
+
+bind -x '"\C-f":~/bin/open-project.sh'
