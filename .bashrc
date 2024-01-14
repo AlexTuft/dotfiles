@@ -105,8 +105,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -120,20 +118,8 @@ fi
 
 . "$HOME/.cargo/env"
 
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
 
-export PS1="\e[1;32m\u@\h \e[1;34m\w \e[1;36m\$(parse_git_branch)\e[00m$ "
 
-bind -x '"\C-f":~/bin/open-project.sh'
-bind -x '"\C-o":~/bin/attach-tmux-session.sh'
-bind -x '"\C-a":tmux a'
 
-# Create a new history file for each tmux session
-mkdir -p "$HOME/.bash-history"
 
-if [[ $TMUX_PANE ]]; then
-    session_name=$(tmux display-message -p '#S')
-    HISTFILE=$HOME/.bash-history/tmux_$session_name
-fi
+source ~/.config/shell/shell

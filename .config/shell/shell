@@ -1,0 +1,4 @@
+source ~/.config/shell/aliases
+source ~/.config/shell/bindings
+source ~/.config/shell/history
+source ~/.config/shell/prompt
