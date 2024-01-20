@@ -4,9 +4,12 @@ if [ ! -z "$TMUX" ]; then
     exit 0
 fi
 
-work_dir=~/sources/
+work_dirs=~/sources
+if [ ! -z $WORK_DIRS ]; then
+    work_dirs=$WORK_DIRS
+fi
 
-workspace_dir=$(find $work_dir -maxdepth 1 -type d | fzf)
+workspace_dir=$(find $(echo $work_dirs | tr ":" " ") -maxdepth 1 -type d | fzf)
 
 if [ -z "$workspace_dir" ]; then
     exit 0
