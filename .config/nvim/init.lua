@@ -79,6 +79,11 @@ vim.o.termguicolors = true
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_command("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
 
+-- Set spellcheck
+
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+
 -- Setup toggle comment plugin
 require("Comment").setup()
 
