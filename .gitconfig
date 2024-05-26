@@ -1,16 +1,18 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-	name = Alex Tuft
-	email = alex.tuft@outlook.com
+name = Alex Tuft
+email = alex.tuft@outlook.com
 [core]
-	editor = nvim
+autocrlf = input
+editor = nvim
 [init]
-	defaultBranch = main
+defaultBranch = main
 [alias]
-	re = commit --amend
+squash = commit --amend --no-edit
+rem = commit --amend
 [format]
-	pretty = oneline
+pretty = oneline
 [log]
-	decorate = short
-	abbrevCommit = true
+decorate = short
+abbrevCommit = true
