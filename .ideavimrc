@@ -13,3 +13,5 @@ set relativenumber
 set number
 set visualbell
 set clipboard=unnamedplus
+
+nnoremap , @@
