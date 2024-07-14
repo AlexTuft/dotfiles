@@ -1,0 +1,10 @@
+#!/bin/bash
+
+template=$(find ~/bin/templates/** -type f -printf '%f\n' | fzf)
+template=~/bin/templates/$template
+
+echo -n "filename: "
+read filename
+
+cp -p $template $filename
+
